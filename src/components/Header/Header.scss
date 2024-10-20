@@ -1,0 +1,59 @@
+@import "../../sass/variables";
+
+.header {
+  width: 100%;
+  padding: 30px;
+  background: #ffffff;
+
+  &__container {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__logo {
+    &-img {
+      cursor: pointer;
+    }
+  }
+  &__search {
+    display: flex;
+    gap: 20px;
+    &-categories {
+      cursor: pointer;
+      padding: 10px 33px;
+      background-color: $main-color;
+      border-radius: 10px;
+      color: #ffffff;
+    }
+    &-input {
+      width: 425px;
+      padding: 10px 20px;
+      border: 1px solid $main-color;
+      border-radius: 10px;
+    }
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__geo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    &-img {
+    }
+    &-text {
+      color: $main-color;
+    }
+  }
+  &__profile {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: $main-color;
+    border-radius: 10px;
+    color: #ffffff;
+  }
+}

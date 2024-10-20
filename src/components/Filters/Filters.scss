@@ -1,0 +1,48 @@
+@import "../../sass/variables";
+
+.filters {
+  &__container {
+  }
+
+  &__categories {
+    &-category {
+      &-name {
+        cursor: pointer;
+        font-size: 18px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+
+      &-subcategories {
+        margin-left: 10px;
+        &-subcategory {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__price {
+    margin-top: 30px;
+    &-title {
+      font-weight: bold;
+    }
+
+    &-range {
+      margin-top: 5px;
+      display: flex;
+      gap: 20px;
+      &-input {
+        width: 100px;
+        height: 35px;
+        padding: 8px 10px;
+        border: 1px solid $main-color;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.active {
+  font-weight: bold;
+}

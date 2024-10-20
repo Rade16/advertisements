@@ -1,0 +1,15 @@
+.footer {
+  margin-top: auto;
+  background: #ffffff;
+  padding: 35px;
+  &__container {
+    width: 1180px;
+    margin: 0 auto;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
