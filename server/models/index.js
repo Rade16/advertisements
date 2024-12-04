@@ -1,6 +1,6 @@
 const sequelize = require("../db");
 const { User } = require("./User");
-const { Recipe } = require("./Recipe");
+const { Post } = require("./Post");
 const { Favorite } = require("./Favorite");
 
 User.hasMany(Post, { foreignKey: "user_id" });
@@ -12,6 +12,6 @@ Post.belongsToMany(User, { through: Favorite, foreignKey: "post_id" });
 module.exports = {
   sequelize,
   User,
-  Recipe,
+  Post,
   Favorite,
 };

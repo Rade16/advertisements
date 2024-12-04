@@ -4,7 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const sequelize = require("./db");
 const router = require("./routes/index");
-const { User, Recipe, Favorite } = require("./models/index");
+const { User, Post, Favorite } = require("./models/index");
 
 const PORT = process.env.PORT || 5000;
 

@@ -3,9 +3,9 @@ const Router = require("express");
 const router = new Router();
 
 const authRouter = require("./authRouter");
-const recipeRouter = require("./postRouter");
+const postRouter = require("./postRouter");
 
 router.use("/auth", authRouter);
-router.use("/posts", recipeRouter);
+router.use("/posts", postRouter);
 
 module.exports = router;
