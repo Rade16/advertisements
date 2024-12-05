@@ -18,6 +18,18 @@ const Post = sequelize.define("Post", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  price: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email:{
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = { Post };

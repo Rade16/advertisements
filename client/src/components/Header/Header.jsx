@@ -3,7 +3,7 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Header/logo.svg";
 import geo from "../../assets/Header/geo.svg";
-
+import logout from "../../assets/Header/logout.svg";
 import { useAuth } from "../../context/AuthContext";
 const Header = () => {
   const { user, setUser } = useAuth();
@@ -22,7 +22,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="header__search">
-          <div className="header__search-categories">Все категории</div>
+          {/* <div className="header__search-categories">Все категории</div> */}
           <input
             type="text"
             placeholder="Поиск объявлений..."
@@ -30,19 +30,19 @@ const Header = () => {
           />
         </div>
         <div className="header__user">
-          <div className="header__geo">
-            <img src={geo} alt="" className="header__geo-img" />
-            <p className="header__geo-text">Москва</p>
-          </div>
+          
 
           {user ? (
-            <div className="header__profile">
-              <span>Привет, {user.username}!</span>
+            <div className="header__authProfile">
+              <Link to="/create">
+              <div className="header__authProfile-post">Создать объявление</div>
+              </Link>
+              <span className="header__authProfile-text">{user.username}</span>
               <button onClick={handleLogout} className="header__profile-button">
                 <img
-                  src={""}
+                  src={logout}
                   alt=""
-                  className="header__profile-button-img"
+                  className="header__authProfile-img"
                 />
               </button>
             </div>

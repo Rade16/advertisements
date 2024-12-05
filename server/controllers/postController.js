@@ -11,6 +11,9 @@ class PostController {
         description,
         address,
         image,
+        price,
+        email,
+        phone
       });
       return res.json(recipe);
     } catch (e) {

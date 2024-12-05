@@ -16,6 +16,7 @@ import AdPage from "./screens/AdPage/AdPage";
 import Login from "./screens/Login/Login";
 import Registration from "./screens/Registration/Registration";
 import { useAuth } from "./context/AuthContext";
+import CreateAd from "./screens/CreateAd/CreateAd";
 const App = () => {
   const { user, setUser } = useAuth();
 
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration />,
+      },
+      {
+        path: "/create",
+        element: <CreateAd/>,
       },
     ],
   },

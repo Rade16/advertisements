@@ -18,7 +18,7 @@ const Ad = ({ title, price, description }) => {
               <div className="ad__info-description">{description}</div>
             </div>
             <div className="ad__info-user">
-              <p className="ad__info-user-name">Грига Никита Степанович</p>
+              <p className="ad__info-user-name">Алиев Рафаэль Заурович </p>
               <p className="ad__info-user-btn">Позвонить</p>
             </div>
           </div>

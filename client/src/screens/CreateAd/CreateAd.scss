@@ -1,0 +1,92 @@
+@use "../../sass/variables" as *; 
+
+.createAd{
+    width: 1180px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 30px;
+    &__container{
+        padding: 20px 100px;
+    }
+    &__title{
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    &__text{
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    &__label{
+        display: block;
+        width: 220px;
+        font-size: 20px;
+        margin-right: 100px;
+        
+    }
+
+    &__textareaLabel{
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    &__input{
+        display: block;
+        width: 480px;
+        height: 45px;
+        border-radius: 10px;
+        border: 1px solid #E3E3E3;
+        background: #FCFCFC;
+        padding: 0 10px;
+
+
+    }
+
+    &__line{
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &__textarea{
+        padding: 15px 30px;
+        min-width: 780px;
+        max-width: 780px;
+        max-height: 250px;
+        min-height: 250px;
+        border: 1px solid #E3E3E3;
+        background: #FCFCFC;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    &__btn{
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 10px 20px;
+        background-color: $main-color;
+        color: #ffffff;
+    }
+
+
+    &__imageLabel{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 10px;
+        height: 140px;
+        width: 180px;
+       
+        background: #F3F3F3;
+        border-radius: 10px;
+    }
+    &__imageInput{
+        display: none;
+    }
+
+
+}
