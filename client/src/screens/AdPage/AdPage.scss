@@ -40,6 +40,8 @@
       &-text {
         margin-top: 10px;
         font-size: 16px;
+        max-width: 580px;
+        word-break: break-word;
       }
     }
     &-description {
@@ -49,6 +51,8 @@
         font-weight: bold;
       }
       &-text {
+        max-width: 580px;
+        word-break: break-word;
         margin-top: 10px;
         font-size: 16px;
       }
@@ -64,30 +68,34 @@
     &-title {
       font-size: 28px;
       font-weight: bold;
+      max-width: 380px;
+      word-break: break-word;
     }
     &-price {
+      max-width: 380px;
+      word-break: break-word;
       margin-top: 20px;
       font-size: 28px;
       font-weight: 500;
     }
     &-user {
+      max-width: 380px;
+      word-break: break-word;
       margin-top: 20px;
       align-items: center;
       gap: 10px;
       display: flex;
+
+      &-title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
       &-name {
-        font-size: 16px;
+        margin-top: 10px;
+        font-size: 20px;
       }
-      &-face {
-        margin-top: 5px;
-        font-size: 16px;
-      }
-      &-img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #bdbdbd;
-      }
+
       &-number {
         margin-top: 20px;
         display: flex;

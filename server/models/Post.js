@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../db");
 
-const Post = sequelize.define("Post", {
+const Post = sequelize.define("post", {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -19,14 +19,18 @@ const Post = sequelize.define("Post", {
     allowNull: true,
   },
   price: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  email: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email:{
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },

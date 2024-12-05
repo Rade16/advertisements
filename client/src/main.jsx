@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./sass/main.scss";
 import { AuthProvider } from "./context/AuthContext";
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/create",
-        element: <CreateAd/>,
+        element: <CreateAd />,
       },
     ],
   },

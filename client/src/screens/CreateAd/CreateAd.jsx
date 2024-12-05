@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CreateAd.scss";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
@@ -7,8 +7,11 @@ const CreateAd = () => {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [address, setIngredients] = useState("");
-  const [ image, setInstructions] = useState("");
+  const [address, setAddress] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   const token = localStorage.getItem("token");
 
@@ -16,13 +19,16 @@ const CreateAd = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/recipes/create/${user.id}`,
+        `http://localhost:5000/api/posts/create/${user.id}`,
         {
           title,
           description,
           address,
-          image: "" 
-
+          price,
+          email,
+          phone,
+          image: "",
+          username: user.username,
         },
 
         {
@@ -46,9 +52,11 @@ const CreateAd = () => {
               Стоимость
             </label>
             <input
-              type="text"
-              placeholder="Стоимость 10.000.000р"
+              type="number"
+              placeholder="10000000"
               className="createAd__input"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           <div className="createAd__line">
@@ -59,6 +67,8 @@ const CreateAd = () => {
               type="text"
               placeholder="Строительство дома под ключ за 11 дней"
               className="createAd__input"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="">
@@ -70,6 +80,8 @@ const CreateAd = () => {
               id=""
               className="createAd__textarea"
               placeholder="Строительство дома под ключ за 11 дней"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="createAd__info">
@@ -86,6 +98,8 @@ const CreateAd = () => {
                   accept="image/*"
                   placeholder="Строительство дома под ключ за 11 дней"
                   className="createAd__imageInput"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
                 />
               </label>
             </div>
@@ -95,9 +109,11 @@ const CreateAd = () => {
                 Номер телефона
               </label>
               <input
-                type="text"
+                type="tel"
                 placeholder="+7 (123) 456-78-90"
                 className="createAd__input"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className="createAd__line">
@@ -105,9 +121,11 @@ const CreateAd = () => {
                 Электронная почта
               </label>
               <input
-                type="text"
+                type="email"
                 placeholder="email@mail.ru"
                 className="createAd__input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="createAd__line">
@@ -118,9 +136,13 @@ const CreateAd = () => {
                 type="text"
                 placeholder=" Москва, пр-т Вернадского, 12К2с1"
                 className="createAd__input"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
-            <button className="createAd__btn" type="submit">Создать объявление</button>
+            <button className="createAd__btn" type="submit">
+              Создать объявление
+            </button>
           </div>
         </form>
       </div>

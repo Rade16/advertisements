@@ -3,9 +3,17 @@ const { User, Post, Favorite } = require("../models/index");
 class PostController {
   async create(req, res) {
     try {
-      const { title, description, address, image } =
-        req.body;
-      const recipe = await Recipe.create({
+      const {
+        title,
+        description,
+        address,
+        image,
+        price,
+        email,
+        phone,
+        username,
+      } = req.body;
+      const post = await Post.create({
         user_id: req.user.id,
         title,
         description,
@@ -13,9 +21,10 @@ class PostController {
         image,
         price,
         email,
-        phone
+        phone,
+        username,
       });
-      return res.json(recipe);
+      return res.json(post);
     } catch (e) {
       console.log(e);
     }
@@ -25,7 +34,6 @@ class PostController {
     try {
       const { userId, postId } = req.body;
 
-     
       const user = await User.findOne({ where: { id: userId } });
       const post = await Post.findOne({ where: { id: postId } });
 
@@ -35,7 +43,6 @@ class PostController {
           .json({ message: "Пользователь или рецепт не найден" });
       }
 
-    
       const existingFavorite = await Favorite.findOne({
         where: { user_id: userId, post_id: postId },
       });
@@ -87,12 +94,11 @@ class PostController {
     try {
       const { userId } = req.params;
 
-      
       const user = await User.findOne({
         where: { id: userId },
         include: {
           model: Post,
-          through: { attributes: [] }, 
+          through: { attributes: [] },
         },
       });
 
@@ -100,7 +106,7 @@ class PostController {
         return res.status(404).json({ message: "Пользователь не найден" });
       }
 
-      return res.json(user.posts); 
+      return res.json(user.posts);
     } catch (error) {
       console.error("Ошибка при получении избранных рецептов:", error);
       return res.status(500).json({ message: "Ошибка сервера" });
@@ -109,7 +115,6 @@ class PostController {
 
   async getPostById(req, res) {
     try {
-  
       const post = await Post.findOne({ where: { id: req.params.id } });
       return res.json(post);
     } catch (e) {

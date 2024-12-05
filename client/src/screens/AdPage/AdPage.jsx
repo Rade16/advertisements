@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AdPage.scss";
-
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import img from "../../assets/User/img.jpg";
-const AdPage = () => {
+const AdPage = (obj) => {
+  const { id } = useParams();
+  const [recipe, setRecipe] = useState({});
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      console.log(obj.id);
+      console.log(obj);
+      console.log(id);
+
+      const response = await axios.get(
+        `http://localhost:5000/api/posts/post/${id}`
+      );
+      console.log(response.data);
+      setRecipe(response.data);
+    };
+    fetchRecipe();
+  }, []);
+
   return (
     <div className="adPage">
       <div className="adPage__container">
@@ -13,60 +32,26 @@ const AdPage = () => {
             </div>
             <div className="adPage__info-geo">
               <p className="adPage__info-geo-title">Расположение</p>
-              <p className="adPage__info-geo-text">
-                Адрес: Москва, пр-т Вернадского, 12К2с1
-              </p>
+              <p className="adPage__info-geo-text">Адрес: {recipe.address}</p>
             </div>
             <div className="adPage__info-description">
               <p className="adPage__info-description-title">Описание</p>
               <p className="adPage__info-description-text">
-                Bнутренняя шлифoвкa и покpaска дерeвянных дoмов Теxничнo и
-                аккуpатнo пpoизвeдeм шлифoвку и покраску пoверxноcти дoмa из
-                бpуcа, бревна, либо же имитaции. Правильная шлифoвкa подчеpкнет
-                кpaсоту и тeплo древесины и создaст дoмaшний уют. Работaем пo
-                ГОCT, в рабoтe иcпользуeм пpофесcиональное оборудование Fеstооl,
-                Grасо.Bнутренняя шлифoвкa и покpaска дерeвянных дoмов Теxничнo и
-                аккуpатнo пpoизвeдeм шлифoвку и покраску пoверxноcти дoмa из
-                бpуcа, бревна, либо же имитaции. Правильная шлифoвкa подчеpкнет
-                кpaсоту и тeплo древесины и создaст дoмaшний уют. Работaем пo
-                ГОCT, в рабoтe иcпользуeм пpофесcиональное оборудование Fеstооl,
-                Grасо.Bнутренняя шлифoвкa и покpaска дерeвянных дoмов Теxничнo и
-                аккуpатнo пpoизвeдeм шлифoвку и покраску пoверxноcти дoмa из
-                бpуcа, бревна, либо же имитaции. Правильная шлифoвкa подчеpкнет
-                кpaсоту и тeплo древесины и создaст дoмaшний уют. Работaем пo
-                ГОCT, в рабoтe иcпользуeм пpофесcиональное оборудование Fеstооl,
-                Grасо.Bнутренняя шлифoвкa и покpaска дерeвянных дoмов Теxничнo и
-                аккуpатнo пpoизвeдeм шлифoвку и покраску пoверxноcти дoмa из
-                бpуcа, бревна, либо же имитaции. Правильная шлифoвкa подчеpкнет
-                кpaсоту и тeплo древесины и создaст дoмaшний уют. Работaем пo
-                ГОCT, в рабoтe иcпользуeм пpофесcиональное оборудование Fеstооl,
-                Grасо.Bнутренняя шлифoвкa и покpaска дерeвянных дoмов Теxничнo и
-                аккуpатнo пpoизвeдeм шлифoвку и покраску пoверxноcти дoмa из
-                бpуcа, бревна, либо же имитaции. Правильная шлифoвкa подчеpкнет
-                кpaсоту и тeплo древесины и создaст дoмaшний уют. Работaем пo
-                ГОCT, в рабoтe иcпользуeм пpофесcиональное оборудование Fеstооl,
-                Grасо.
+                {recipe.description}
               </p>
             </div>
           </div>
           <div className="adPage__sticky">
             <div className="adPage__sticky-container">
-              <h1 className="adPage__sticky-title">
-                Внутренняя покраска деревянных домов
-              </h1>
-              <p className="adPage__sticky-price">1200000₽</p>
+              <h1 className="adPage__sticky-title">{recipe.title}</h1>
+              <p className="adPage__sticky-price">{recipe.price} ₽</p>
               <div className="adPage__sticky-user">
-                <img src={img} alt="" className="adPage__sticky-user-img" />
                 <div className="adPage__sticky-user-info">
-                  <p className="adPage__sticky-user-name">
-                    Грига Никита Степанович
-                  </p>
-                  <p className="adPage__sticky-user-face">Физическое лицо</p>
+                  <p className="adPage__sticky-user-title">Автор объявления:</p>
+                  <p className="adPage__sticky-user-name">{recipe.username}</p>
                 </div>
               </div>
-              <div className="adPage__sticky-user-number">
-                +7(999) 123-45-67
-              </div>
+              <div className="adPage__sticky-user-number">{recipe.phone}</div>
             </div>
           </div>
         </div>
