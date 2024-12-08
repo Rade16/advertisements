@@ -7,7 +7,6 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
-  Navigate,
 } from "react-router-dom";
 import axios from "axios";
 import AdsList from "./screens/AdsList/AdsList";
