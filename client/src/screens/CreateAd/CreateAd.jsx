@@ -8,43 +8,100 @@ const CreateAd = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
-  const [image, setImage] = useState("");
+
   const [price, setPrice] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [images, setImages] = useState([]);
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
   const token = localStorage.getItem("token");
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("address", address);
+    formData.append("price", price);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("username", user.username);
+    formData.append("category", selectedCategory);
+    formData.append("subcategory", selectedSubcategory);
+
+    images.forEach((image) => formData.append("images", image));
+
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/posts/create/${user.id}`,
+        "http://localhost:5000/api/posts/create/" + user.id,
+        formData,
         {
-          title,
-          description,
-          address,
-          price,
-          email,
-          phone,
-          image: "",
-          username: user.username,
-        },
-
-        {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       console.log(response.data);
     } catch (error) {
-      console.error("Ошибка при создании рецепта:", error);
+      console.error("Ошибка при создании объявления:", error);
     }
+  };
+
+  const categories = {
+    Услуги: ["Строительство", "Уборка", "Обучение", "Ремонт", "IT"],
+    Товары: ["Электроника", "Одежда", "Мебель", "Транспорт", "Авто"],
   };
 
   return (
     <div className="createAd">
       <div className="createAd__container">
         <h1 className="createAd__title">Создать объявление</h1>
+        <div className="createAd__line">
+          <label className="createAd__label">Категория</label>
+          <select
+            className="createAd__input"
+            value={selectedCategory}
+            onChange={(e) => {
+              const category = e.target.value;
+              setSelectedCategory(category);
+              setSelectedSubcategory("");
+            }}
+          >
+            <option value="">Выберите категорию</option>
+            {Object.keys(categories).map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="createAd__line">
+          <label className="createAd__label">Подкатегория</label>
+          <select
+            className="createAd__input"
+            value={selectedSubcategory}
+            onChange={(e) => setSelectedSubcategory(e.target.value)}
+            disabled={!selectedCategory}
+          >
+            <option value="">Выберите подкатегорию</option>
+            {selectedCategory &&
+              categories[selectedCategory].map((subcategory) => (
+                <option key={subcategory} value={subcategory}>
+                  {subcategory}
+                </option>
+              ))}
+          </select>
+        </div>
         <p className="createAd__text">Об услуге</p>
         <form action="" onSubmit={handleSubmit}>
           <div className="createAd__line">
@@ -96,12 +153,17 @@ const CreateAd = () => {
                   type="file"
                   id="image"
                   accept="image/*"
+                  multiple
                   placeholder="Строительство дома под ключ за 11 дней"
                   className="createAd__imageInput"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
+                  onChange={handleImageChange}
                 />
               </label>
+            </div>
+            <div className="createAd__preview">
+              {images.map((image, index) => (
+                <p key={index}>{image.name}</p>
+              ))}
             </div>
             <p className="createAd__text">Контакты</p>
             <div className="createAd__line">

@@ -14,13 +14,16 @@ const Filters = ({ onFilterChange }) => {
   const handleCategoryToggle = (category) => {
     setOpenCategory(openCategory === category ? null : category);
     setSelectedCategory(category);
+    setSelectedSubcategory(""); // Сбрасываем подкатегорию при смене категории
   };
 
   const handleSubcategoryChange = (subcategory) => {
     setSelectedSubcategory(subcategory);
-    if (onFilterChange) {
-      onFilterChange({ category: subcategory, priceRange });
-    }
+    onFilterChange({
+      category: selectedCategory,
+      subcategory,
+      priceRange,
+    });
   };
 
   const handlePriceChange = (e) => {
@@ -29,9 +32,14 @@ const Filters = ({ onFilterChange }) => {
       ...prevState,
       [name]: value,
     }));
+
     onFilterChange({
-      category: selectedSubcategory,
-      priceRange: { ...priceRange, [name]: value },
+      category: selectedCategory,
+      subcategory: selectedSubcategory,
+      priceRange: {
+        ...priceRange,
+        [name]: value,
+      },
     });
   };
 

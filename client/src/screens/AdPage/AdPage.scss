@@ -109,4 +109,12 @@
       }
     }
   }
+  &__thumbnail {
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
 }

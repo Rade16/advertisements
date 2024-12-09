@@ -6,11 +6,17 @@ import img from "../../assets/Ad/img.jpg";
 import { Link } from "react-router-dom";
 
 const Ad = (obj) => {
+  const imageSrc = obj.images && obj.images.length > 0 ? obj.images[0] : img;
+
   return (
     <Link to={`/ads/${obj.id}`} className="ad__link">
       <div className="ad">
         <div className="ad__container">
-          <img src={img} alt="" className="ad__img" />
+          <img
+            src={`http://localhost:5000${imageSrc}`}
+            alt=""
+            className="ad__img"
+          />
           <div className="ad__info">
             <div className="ad__info-product">
               <div className="ad__info-title">{obj.title}</div>

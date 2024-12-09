@@ -7,22 +7,27 @@ class PostController {
         title,
         description,
         address,
-        image,
         price,
         email,
         phone,
         username,
+        category,
+        subcategory,
       } = req.body;
+
+      const imagePaths = req.files.map((file) => `/uploads/${file.filename}`);
       const post = await Post.create({
         user_id: req.user.id,
         title,
         description,
         address,
-        image,
         price,
         email,
         phone,
         username,
+        images: JSON.stringify(imagePaths),
+        category,
+        subcategory,
       });
       return res.json(post);
     } catch (e) {
@@ -75,7 +80,12 @@ class PostController {
   async getAllPosts(req, res) {
     try {
       const posts = await Post.findAll();
-      return res.json(posts);
+
+      const parsedPosts = posts.map((post) => ({
+        ...post.dataValues,
+        images: post.images ? JSON.parse(post.images) : [],
+      }));
+      return res.json(parsedPosts);
     } catch (e) {
       console.log(e);
     }
@@ -116,6 +126,14 @@ class PostController {
   async getPostById(req, res) {
     try {
       const post = await Post.findOne({ where: { id: req.params.id } });
+
+      if (post) {
+        const parsedPost = {
+          ...post.dataValues,
+          images: JSON.parse(post.images),
+        };
+        return res.json(parsedPost);
+      }
       return res.json(post);
     } catch (e) {
       console.log(e);

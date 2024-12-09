@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Header/logo.svg";
 import geo from "../../assets/Header/geo.svg";
 import logout from "../../assets/Header/logout.svg";
 import { useAuth } from "../../context/AuthContext";
-const Header = () => {
+const Header = ({ onSearch }) => {
   const { user, setUser } = useAuth();
-
+  const [searchQuery, setSearchQuery] = useState("");
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
     alert("Вы вышли из аккаунта");
+  };
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onSearch(query);
   };
   return (
     <header className="header">
@@ -27,23 +33,21 @@ const Header = () => {
             type="text"
             placeholder="Поиск объявлений..."
             className="header__search-input"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
         </div>
         <div className="header__user">
-          
-
           {user ? (
             <div className="header__authProfile">
               <Link to="/create">
-              <div className="header__authProfile-post">Создать объявление</div>
+                <div className="header__authProfile-post">
+                  Создать объявление
+                </div>
               </Link>
               <span className="header__authProfile-text">{user.username}</span>
               <button onClick={handleLogout} className="header__profile-button">
-                <img
-                  src={logout}
-                  alt=""
-                  className="header__authProfile-img"
-                />
+                <img src={logout} alt="" className="header__authProfile-img" />
               </button>
             </div>
           ) : (
