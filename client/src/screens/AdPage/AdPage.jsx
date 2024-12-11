@@ -3,6 +3,7 @@ import "./AdPage.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import img from "../../assets/User/img.jpg";
+import { useAuth } from "../../context/AuthContext";
 const AdPage = (obj) => {
   const { id } = useParams();
   const [ad, setAd] = useState({});

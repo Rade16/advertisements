@@ -7,7 +7,7 @@ import axios from "axios";
 import Filters from "../../components/Filters/Filters";
 import Ad from "../../components/Ad/Ad";
 import { useOutletContext } from "react-router-dom";
-
+import { useAuth } from "../../context/AuthContext";
 const AdsList = () => {
   const [ad, setAd] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
