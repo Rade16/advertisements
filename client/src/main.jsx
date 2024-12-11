@@ -19,6 +19,9 @@ import CreateAd from "./screens/CreateAd/CreateAd";
 const App = () => {
   const { user, setUser } = useAuth();
 
+  if (!user) {
+    return <div>Загрузка...</div>;
+  }
   useEffect(() => {
     const fetchUserData = async () => {
       try {

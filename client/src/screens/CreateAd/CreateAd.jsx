@@ -69,7 +69,7 @@ const CreateAd = () => {
           <label className="createAd__label">Категория</label>
           <select
             className="createAd__input"
-            value={selectedCategory}
+            value={selectedCategory} 
             onChange={(e) => {
               const category = e.target.value;
               setSelectedCategory(category);
