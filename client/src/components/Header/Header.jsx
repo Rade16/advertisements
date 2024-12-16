@@ -28,7 +28,6 @@ const Header = ({ onSearch }) => {
           </Link>
         </div>
         <div className="header__search">
-          {/* <div className="header__search-categories">Все категории</div> */}
           <input
             type="text"
             placeholder="Поиск объявлений..."

@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./registration.scss";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 const Registration = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -25,7 +25,14 @@ const Registration = () => {
       navigate("/login");
       console.log(response.data);
     } catch (error) {
-      console.error(error);
+      if (error.response && error.response.data) {
+        const { errors } = error.response.data;
+        if (Array.isArray(errors)) {
+          alert(errors.join("\n"));
+        } else {
+          alert(error.response.data.message);
+        }
+      }
     }
   };
 
