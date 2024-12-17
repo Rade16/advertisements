@@ -54,6 +54,7 @@ const CreateAd = () => {
         }
       );
       console.log(response.data);
+      alert("Объявление успешно создано!");
     } catch (error) {
       console.error("Ошибка при создании объявления:", error);
     }
